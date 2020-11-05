@@ -18,11 +18,17 @@ namespace assignment_three
             double hourlyPay, grossSalary;
 
             string departmentName = "";
-            double totalSalary = 0;
+            double[] totalgrossPayroll = new double[7]; // an array to hold total gross payroll of individual departments and the length of the array is set to 7
 
-            double[] accumSalary = new double[7];
 
             string[] departments = {"Personnel", "Marketing", "Information Technology", "Computer Services", "Sales", "Legal", "Accounting"}; // store theall the department names
+            double personnelTotalPayroll = 0;
+            double marketingTotalPayroll = 0;
+            double itTotalPayroll = 0;
+            double csTotalPayroll = 0;
+            double salesTotalPayroll = 0;
+            double legalTotalPayroll = 0;
+            double accountingTotalPayroll = 0;
             sentinelValue = "0";
             Console.WriteLine("Enter the employee’s name: ");
             employeeName = Console.ReadLine(); // get the employee's name as the primer
@@ -30,26 +36,24 @@ namespace assignment_three
             while (employeeName != sentinelValue)
             {
 
-
-                Console.WriteLine("\nEnter the department number from the list of departments below: ");
-
                 for (int i = 0; i < departments.Length; i++)
                 {
                     Console.WriteLine($"{i + 1} = {departments[i]} department");// display the department and the department number.
                 }
 
+                Console.WriteLine("\nEnter a department number from the list of departments above: ");
                 departmentNumber = Convert.ToInt32(Console.ReadLine());
 
                 while(departmentNumber < 1 || departmentNumber > 7) // check if the department number entered is not between 1 to 7
                 {
-                    Console.WriteLine("\nYou have entered an invalid department number.");
-                    Console.WriteLine("Enter the department number from the list of departments below: ");
+                    Console.WriteLine("\nYou have entered an invalid department number.\n");
 
                     for (int i = 0; i < departments.Length; i++)
                     {
                         Console.WriteLine($"{i + 1} = {departments[i]} department");// display the department and the department number.
                     }
 
+                    Console.WriteLine("Enter a department number from the list of departments above: ");
                     departmentNumber = Convert.ToInt32(Console.ReadLine());
                         
                 }
@@ -63,38 +67,51 @@ namespace assignment_three
 
                 grossSalary = hourlyPay * numberOfHours;
 
-                totalSalary += grossSalary;
-
+                
 
                 if(departmentNumber == 1){
-                    accumSalary[0] = totalSalary;
                     departmentName = departments[0];
+                    personnelTotalPayroll += grossSalary;
                 }
                 else if(departmentNumber == 2){
-                    accumSalary[1] = totalSalary;
                     departmentName = departments[1];
+                    marketingTotalPayroll += grossSalary;
+
                 }
                 else if(departmentNumber == 3){
-                    accumSalary[2] = totalSalary;
                     departmentName = departments[2];
+                    itTotalPayroll += grossSalary;
+
                 }
                 else if(departmentNumber == 4){
-                    accumSalary[3] = totalSalary;
                     departmentName = departments[3];
+                    csTotalPayroll += grossSalary;
+
                 }
                 else if(departmentNumber == 5){
-                    accumSalary[4] = totalSalary;
                     departmentName = departments[4];
+                    salesTotalPayroll += grossSalary;
+
                 }
                 else if(departmentNumber == 6){
-                    accumSalary[5] = totalSalary;
                     departmentName = departments[5];
+                   legalTotalPayroll += grossSalary;
+
                 }
                 else {
-                    accumSalary[6] = totalSalary;
                     departmentName = departments[6];
-                }
+                    accountingTotalPayroll += grossSalary;
 
+                }
+                
+                //each department is assigned a total gross payroll
+                totalgrossPayroll[0] = personnelTotalPayroll;
+                totalgrossPayroll[1] = marketingTotalPayroll;
+                totalgrossPayroll[2] = itTotalPayroll;
+                totalgrossPayroll[3] = csTotalPayroll;
+                totalgrossPayroll[4] = salesTotalPayroll;
+                totalgrossPayroll[5] = legalTotalPayroll;
+                totalgrossPayroll[6] = accountingTotalPayroll;
 
                 Console.WriteLine("\nYou've entered the following information");
                 Console.WriteLine($"Employee name = {employeeName}");
@@ -102,27 +119,19 @@ namespace assignment_three
                 Console.WriteLine($"Department name = {departmentName}");
 
                 
-                
-                // Console.WriteLine("\nPress enter to continue or 0 to quit");
-                // Console.ReadLine();
-                Console.WriteLine("\nEnter the employee’s name: ");
+                Console.WriteLine("\n To continue, enter the employee’s name or 0 to quit: ");
                 employeeName = Console.ReadLine();
 
             }
 
+                         
+            Console.WriteLine("{0,-30} {1,5}\n", "Department Name", "Department Total"); // using the composite formatting method and also alignmnet, -30 get the first string align left
+            
+            for (int x = 0; x < departments.Length; x++)
+            {
 
-            Console.WriteLine(accumSalary);
-
-            // for (int x = 0; x < departments.Length; x++)
-            // {
-            //     for (int y = 0; y < accumSalary.Length; y++)
-            //     {
-            //         Console.Write(departments[x], accumSalary[y] + " \t");
-            //     }
-
-            //     Console.WriteLine("");
-
-            // }
+                Console.WriteLine("{0, -30} {1,5}", departments[x], totalgrossPayroll[x]);
+            }
 
 
         }
