@@ -124,7 +124,7 @@ namespace assignment_three
 
             }
 
-                         
+            Console.WriteLine("The Payroll Report: \n");           
             Console.WriteLine("{0,-30} {1,5}\n", "Department Name", "Department Total"); // using the composite formatting method and also alignmnet, -30 get the first string align left
             
             for (int x = 0; x < departments.Length; x++)
