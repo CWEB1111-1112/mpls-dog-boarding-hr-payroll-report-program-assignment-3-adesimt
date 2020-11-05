@@ -1,7 +1,7 @@
 ﻿using System;
 
 /**
-Name: 
+Name: Simeon Adewale
 Date of completion:
 Please be sure to comment your code - provide a comment for each structure use in 
 program.
